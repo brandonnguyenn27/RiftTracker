@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import PlayerMatchContainer from "@/components/PlayerMatchContainer";
+import {Input} from "@nextui-org/react";
 
 function Home() {
   const [searchPlayer, setSearchPlayer] = useState("");
@@ -33,13 +34,17 @@ function Home() {
   return (
     <main>
       <div>
-        <div className="text-center mt-5">
-          <h2 className="text-4xl">RiftStats</h2>
-          <input
-            className="m-2 p-1 rounded-sm border border-black"
+        <div className="text-center">
+          <p className="text-4xl font-bold mt-3">Rift Tracker</p>
+          <div className="w-1/2 flex items-center justify-center">
+          <Input
+            className="m-2 p-1 text-center"
             type="text"
             onChange={(e) => setSearchPlayer(e.target.value)}
-          ></input>
+            placeholder="Game Name + #NA1"
+            size="sm"
+          ></Input>
+          </div>
           <button
             className="rounded-sm border border-black p-1"
             onClick={getPlayerGames}
@@ -48,11 +53,11 @@ function Home() {
           </button>
         </div>
         {gameList.length !== 0 ? (
-          <div className="m-8 p-2">
+          <div className="m-8 p-2 border-0">
             <p className="text-center p-2">Player Found!</p>
             {gameList.map((gameData, index) => (
-              <div className="m-3 border-2 rounded-lg">
-                <h2 className=" bg-gray-400 p-1 bg-opacity-30 rounded-md">
+              <div className="border rounded-lg border-b-0 p-3">
+                <h2 className=" bg-gray-400 bg-opacity-30 rounded-md p-2 font-semibold">
                   Game {index + 1}
                 </h2>
                 <PlayerMatchContainer
