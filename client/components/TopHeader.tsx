@@ -2,11 +2,12 @@
 import { useState } from "react";
 import { Input, Button } from "@nextui-org/react";
 
-const TopHeader = ({ getGame }) => {
+const TopHeader = ({getGame}) => {
   const [searchPlayer, setSearchPlayer] = useState("");
 
   const handleClick = () => {
     getGame(searchPlayer);
+    
   };
 
   return (

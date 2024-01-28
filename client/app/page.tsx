@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import PlayerMatchContainer from "@/components/PlayerMatchContainer";
 import TopHeader from "@/components/TopHeader";
-
+import PlayerIconHeader from "@/components/PlayerIconHeader";
 
 function Home() {
   const [gameList, setGameList] = useState([]);
@@ -34,19 +34,21 @@ function Home() {
       <div>
         <TopHeader getGame={getPlayerGames}></TopHeader>
         {gameList.length !== 0 ? (
-          <div className="m-6 border-0">
-            <p className="text-center p-2">Player Found!</p>
-            {gameList.map((gameData, index) => (
-              <div className="m-3 p-2">
-                <PlayerMatchContainer
-                  matchData={gameData}
-                  puuid={playerPUUID}
-                  key={index}
-                  gameIndex={index + 1}
-                ></PlayerMatchContainer>
-              </div>
-            ))}
-          </div>
+          <>
+            <PlayerIconHeader player={gameList[0]} puuid={playerPUUID} />
+            <div className="m-6 border-0">
+              {gameList.map((gameData, index) => (
+                <div className="m-3 p-2">
+                  <PlayerMatchContainer
+                    matchData={gameData}
+                    puuid={playerPUUID}
+                    key={index}
+                    gameIndex={index + 1}
+                  ></PlayerMatchContainer>
+                </div>
+              ))}
+            </div>
+          </>
         ) : (
           <>
             <p className="text-center p-2">Player Not Found!</p>

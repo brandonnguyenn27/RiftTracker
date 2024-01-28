@@ -4,9 +4,9 @@ import Image from "next/image";
 const ItemImageContainer = (imageID) => {
   const imageIDNumber = imageID.imageID;
   return (
-    <div className="border rounded-md h-8 w-8 m-0.5">
+    <div className="m-0.5">
       {imageIDNumber == 0 ? (
-        <div className="empty-image-frame border border-gray-300"></div>
+        <div className="border-1 rounded-md border-gray-400 border-opacity-70 h-8 w-8"></div>
       ) : (
         <Image
           src={`/item/${imageIDNumber}.png`}
