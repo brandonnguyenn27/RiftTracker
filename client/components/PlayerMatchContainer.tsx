@@ -1,6 +1,8 @@
 import { Accordion, AccordionItem } from "@nextui-org/accordion";
 import React from "react";
-import { useState, useEffect } from "react";
+import ChampionIconContainer from "./ChampionIconContainer";
+import ItemImageContainer from "./ItemImageContainer";
+
 
 const gameTypeConverter = (queueID) => {
   if (queueID == 400) {
@@ -17,6 +19,19 @@ const gameTypeConverter = (queueID) => {
   } else {
     return "0";
   }
+};
+const renderItems = (gamePlayer) => {
+  return (
+  <>
+  <ItemImageContainer imageID={gamePlayer.item0}></ItemImageContainer>
+  <ItemImageContainer imageID={gamePlayer.item1}></ItemImageContainer>
+  <ItemImageContainer imageID={gamePlayer.item2}></ItemImageContainer>
+  <ItemImageContainer imageID={gamePlayer.item3}></ItemImageContainer>
+  <ItemImageContainer imageID={gamePlayer.item4}></ItemImageContainer>
+  <ItemImageContainer imageID={gamePlayer.item5}></ItemImageContainer>
+  <ItemImageContainer imageID={gamePlayer.item6}></ItemImageContainer>
+  </>
+  );
 };
 
 const secondsToMin = (seconds) => {
@@ -62,30 +77,45 @@ const PlayerMatchContainer = ({ matchData, puuid, gameIndex }) => {
             <div
               className={`border-2 border-${
                 playerInfo.win === true ? "blue" : "red"
-              }-500 p-5 rounded-md m-2 border-opacity-50 flex-1`}
+              }-500 p-2 rounded-md m-2 border-opacity-50 flex-1`}
             >
               {participantList.slice(0, 5).map((gamePlayer, index1) => (
                 <div className="border rounded-sm p-1">
+                  <div className="flex items-center m-1">
+                  <ChampionIconContainer
+                    championName={gamePlayer.championName}/>
                   <p key={index1} className="p-2">
                     {gamePlayer.riotIdGameName} {"| "} {gamePlayer.championName}{" "}
                     {"| "} {gamePlayer.kills}/{gamePlayer.deaths}/
                     {gamePlayer.assists}
                   </p>
+                  </div>
+                  <div className="flex">
+                  {renderItems(gamePlayer)}
+                  </div>
                 </div>
               ))}
+
             </div>
             <div
               className={`border-2 border-${
                 playerInfo.win === true ? "blue" : "red"
-              }-500 p-5 rounded-md m-2 border-opacity-50 flex-1`}
+              }-500 p-2 rounded-md m-2 border-opacity-50 flex-1`}
             >
               {participantList.slice(-5).map((gamePlayer, index2) => (
                 <div className="border rounded-sm p-1">
+                  <div className="flex items-center m-1">
+                  <ChampionIconContainer
+                    championName={gamePlayer.championName}/>
                   <p key={index2} className="p-2">
                     {gamePlayer.riotIdGameName} {"| "} {gamePlayer.championName}{" "}
                     {"| "} {gamePlayer.kills}/{gamePlayer.deaths}/
                     {gamePlayer.assists}
                   </p>
+                  </div>
+                  <div className="flex">
+                  {renderItems(gamePlayer)}
+                  </div>
                 </div>
               ))}
             </div>
