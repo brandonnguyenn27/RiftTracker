@@ -49,6 +49,20 @@ const PlayerMatchContainer = ({ matchData, puuid, gameIndex }) => {
   let date = new Date(matchData.info.gameCreation);
   let printDate = date.toLocaleDateString("en-US");
 
+
+  const damageNumberArray = (participantList: any) => {
+    let maxDamage: number = participantList[0].totalDamageDealtToChampions;
+    for (let i = 1; i < participantList.length; i ++) {
+      const current: number = participantList[i].totalDamageDealtToChampions;
+      if (current > maxDamage) {
+        maxDamage = current;
+      }
+    }
+    return maxDamage;
+  };
+  const maxDamage: number = damageNumberArray(participantList);
+  console.log(maxDamage);
+
   //let winBoolean = playerInfo.win !== null ? playerInfo.win : playerInfo.gameEndedInEarlySurrender;
   //{winBoolean ? "Victory" : "Defeat"}
   //const color = playerInfo.win ? 'blue-500' : 'red-500';
@@ -65,12 +79,17 @@ const PlayerMatchContainer = ({ matchData, puuid, gameIndex }) => {
           key="1"
           aria-label="Player Info Container"
           title={
-            <h2 className="flex">
+            <div className="flex">
+              <ChampionIconContainer 
+              championName={playerInfo.championName}
+              />
+            <h2 className="">
               {printDate} {"| "} {gameTypeConverter(matchData.info.queueId)}{" "}
               {"| "} {secondsToMin(matchData.info.gameDuration)} {"| "}{" "}
               {winBoolean ? "Victory" : "Defeat"} {" | "}
               {playerInfo.kills}/{playerInfo.deaths}/{playerInfo.assists}
             </h2>
+            </div>
           }
         >
           <div className="flex">
