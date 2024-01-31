@@ -6,7 +6,7 @@ const ItemImageContainer = (imageID) => {
   return (
     <div className="m-0.5">
       {imageIDNumber == 0 ? (
-        <div className="border-1 rounded-md border-gray-400 border-opacity-70 h-8 w-8"></div>
+        <div className="border-1 rounded-md border-gray-400 border-opacity-70 h-8 w-8 bg-slate-500"></div>
       ) : (
         <Image
           src={`/item/${imageIDNumber}.png`}

@@ -11,8 +11,8 @@ const TopHeader = ({getGame}) => {
   };
 
   return (
-    <div className="text-center">
-      <p className="text-4xl font-bold mt-3">Rift Tracker</p>
+    <div className="text-center bg-gray-600">
+      <p className="text-4xl font-bold text-white">Rift Tracker</p>
       <div className="flex justify-center items-center">
         <Input
           className="m-2 p-1 text-center w-96"

@@ -1,8 +1,9 @@
+
 import { Accordion, AccordionItem } from "@nextui-org/accordion";
 import React from "react";
 import ChampionIconContainer from "./ChampionIconContainer";
 import ItemImageContainer from "./ItemImageContainer";
-
+import DamageContainer from "./DamageContainer";
 
 const gameTypeConverter = (queueID) => {
   if (queueID == 400) {
@@ -61,7 +62,7 @@ const PlayerMatchContainer = ({ matchData, puuid, gameIndex }) => {
     return maxDamage;
   };
   const maxDamage: number = damageNumberArray(participantList);
-  console.log(maxDamage);
+  
 
   //let winBoolean = playerInfo.win !== null ? playerInfo.win : playerInfo.gameEndedInEarlySurrender;
   //{winBoolean ? "Victory" : "Defeat"}
@@ -69,71 +70,85 @@ const PlayerMatchContainer = ({ matchData, puuid, gameIndex }) => {
   //border-${playerInfo.win === true ? 'blue' : 'red'}-500
   return (
     <>
-      <div>
-        <h2 className=" bg-gray-400 bg-opacity-30 rounded-md rounded-b-none p-3 font-semibold">
+      <div className={`${playerInfo.win === true ? 'bg-blue-500' : 'bg-red-500'} border-gray-400 border bg-opacity-90 rounded-b-none rounded-md`}>
+        <p className={`bg-opacity-30 rounded-md rounded-b-none p-3 font-semibold text-white`}>
           Game {gameIndex}
-        </h2>
+        </p>
       </div>
-      <Accordion className="rounded-md rounded-t-none border-2 border-gray-200">
+      <Accordion className="border border-gray-400 rounded-md rounded-t-none bg-gray-700">
         <AccordionItem
           key="1"
           aria-label="Player Info Container"
           title={
             <div className="flex">
+              <div className="pr-2">
               <ChampionIconContainer 
               championName={playerInfo.championName}
               />
-            <h2 className="">
+              </div>
+            <p className="text-white">
               {printDate} {"| "} {gameTypeConverter(matchData.info.queueId)}{" "}
               {"| "} {secondsToMin(matchData.info.gameDuration)} {"| "}{" "}
               {winBoolean ? "Victory" : "Defeat"} {" | "}
               {playerInfo.kills}/{playerInfo.deaths}/{playerInfo.assists}
-            </h2>
+            </p>
             </div>
           }
         >
           <div className="flex">
             <div
-              className={`border-2 border-${
-                playerInfo.win === true ? "blue" : "red"
-              }-500 p-2 rounded-md m-2 border-opacity-50 flex-1`}
+              className="border border-white rounded-md m-2 flex-1 bg-gray-600 border-b-0"
             >
               {participantList.slice(0, 5).map((gamePlayer, index1) => (
-                <div className="border rounded-sm p-1">
+                <div className="border-b-1 rounded-sm p-1">
                   <div className="flex items-center m-1">
                   <ChampionIconContainer
                     championName={gamePlayer.championName}/>
-                  <p key={index1} className="p-2">
+                  <p key={index1} className="p-2 text-white">
                     {gamePlayer.riotIdGameName} {"| "} {gamePlayer.championName}{" "}
                     {"| "} {gamePlayer.kills}/{gamePlayer.deaths}/
                     {gamePlayer.assists}
                   </p>
                   </div>
-                  <div className="flex">
+                  <div className="flex items-center">
+                  <>
                   {renderItems(gamePlayer)}
+                  </>
+                  <div className="pl-2">
+                  <DamageContainer
+                  damage={gamePlayer.totalDamageDealtToChampions}
+                  maxDamage={maxDamage}
+                  />
+                  </div>
                   </div>
                 </div>
               ))}
 
             </div>
             <div
-              className={`border-2 border-${
-                playerInfo.win === true ? "blue" : "red"
-              }-500 p-2 rounded-md m-2 border-opacity-50 flex-1`}
+              className="border border-white rounded-md m-2 flex-1 bg-gray-600 border-b-0"
             >
               {participantList.slice(-5).map((gamePlayer, index2) => (
-                <div className="border rounded-sm p-1">
+                <div className="border-b-1 rounded-sm p-1">
                   <div className="flex items-center m-1">
                   <ChampionIconContainer
                     championName={gamePlayer.championName}/>
-                  <p key={index2} className="p-2">
+                  <p key={index2} className="p-2 text-white">
                     {gamePlayer.riotIdGameName} {"| "} {gamePlayer.championName}{" "}
                     {"| "} {gamePlayer.kills}/{gamePlayer.deaths}/
                     {gamePlayer.assists}
                   </p>
                   </div>
                   <div className="flex">
+                    <>
                   {renderItems(gamePlayer)}
+                  </>
+                  <div className="pl-2">
+                  <DamageContainer
+                  damage={gamePlayer.totalDamageDealtToChampions}
+                  maxDamage={maxDamage}
+                  />
+                  </div>
                   </div>
                 </div>
               ))}

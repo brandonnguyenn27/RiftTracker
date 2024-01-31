@@ -31,14 +31,14 @@ function Home() {
 
   return (
     <main>
-      <div>
+      <div className="h-screen bg-gray-500">
         <TopHeader getGame={getPlayerGames}></TopHeader>
         {gameList.length !== 0 ? (
           <>
             <PlayerIconHeader player={gameList[0]} puuid={playerPUUID} />
-            <div className="m-6 border-0">
+            <div className="border-0 bg-gray-600">
               {gameList.map((gameData, index) => (
-                <div className="m-3 p-2">
+                <div className={`${index === 0 ? 'm-3 mt-0' : 'm-3' } ${index === 9 ? 'mb-0' : ''} p-2`}>
                   <PlayerMatchContainer
                     matchData={gameData}
                     puuid={playerPUUID}
@@ -51,7 +51,7 @@ function Home() {
           </>
         ) : (
           <>
-            <p className="text-center p-2">Player Not Found!</p>
+            <p className="text-center p-2 text-white">Player Not Found!</p>
           </>
         )}
       </div>
