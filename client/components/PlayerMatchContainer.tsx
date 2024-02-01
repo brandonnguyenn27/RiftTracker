@@ -5,7 +5,7 @@ import ChampionIconContainer from "./ChampionIconContainer";
 import ItemImageContainer from "./ItemImageContainer";
 import DamageContainer from "./DamageContainer";
 
-const gameTypeConverter = (queueID) => {
+const gameTypeConverter = (queueID: number) => {
   if (queueID == 400) {
     return "Normal Draft";
   }
@@ -24,7 +24,7 @@ const gameTypeConverter = (queueID) => {
     return "Error";
   }
 };
-const renderItems = (gamePlayer) => {
+const renderItems = (gamePlayer: any) => {
   return (
   <>
   <ItemImageContainer imageID={gamePlayer.item0}></ItemImageContainer>
@@ -38,7 +38,7 @@ const renderItems = (gamePlayer) => {
   );
 };
 
-const secondsToMin = (seconds) => {
+const secondsToMin = (seconds: number) => {
   const minutes = Math.floor(seconds / 60);
   const remainingSeconds = seconds % 60;
   const formattedSeconds =

@@ -1,5 +1,5 @@
 import Image from "next/image";
-const ChampionIconContainer = (championName) => {
+const ChampionIconContainer = (championName: any) => {
   const champName = championName.championName;
   return (
     <>

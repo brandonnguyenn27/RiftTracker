@@ -1,5 +1,5 @@
 import Image from "next/image";
-const PlayerIconHeader = ({ player, puuid }) => {
+const PlayerIconHeader = ({ player, puuid } : {player: any, puuid: string}) => {
   console.log(player);
   const playerIndex = player.metadata.participants.indexOf(puuid);
   const playerInfo = player.info.participants[playerIndex];
