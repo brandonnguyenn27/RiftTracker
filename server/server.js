@@ -9,7 +9,7 @@ var app = express();
 
 app.use(cors());
 const API_KEY = process.env.API_KEY;
-console.log("THE API KEY IS: " + API_KEY)
+console.log(API_KEY)
 
 function getPlayerPUUID(playerName) {
     var searchPlayerSplit = playerName.split('#');
