@@ -1,20 +1,21 @@
+const dotenv = require('dotenv');
+dotenv.config();
 var express = require('express');
 var cors = require('cors');
 const axios = require('axios');
-const port = 4000
+const port = process.env.port || 4000;
 
 var app = express();
 
 app.use(cors());
-
-const API_KEY = "RGAPI-e5f83420-3b57-49d6-b72a-3671b8ebb5d2";
-console.log(API_KEY)
+const API_KEY = process.env.API_KEY;
+console.log("THE API KEY IS: " + API_KEY)
 
 function getPlayerPUUID(playerName) {
     var searchPlayerSplit = playerName.split('#');
     var playerGameName = searchPlayerSplit[0];
     var playerTagLine = searchPlayerSplit[1];
-    
+    console.log(API_KEY)
     return axios.get("https://americas.api.riotgames.com/riot/account/v1/accounts/by-riot-id/"+ playerGameName + "/" + playerTagLine + "?api_key=" + API_KEY)
         .then(response => {
             console.log(response.data);

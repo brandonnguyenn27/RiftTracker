@@ -52,7 +52,7 @@ const PlayerMatchContainer = ({ matchData, puuid, gameIndex }) => {
   let winBoolean = playerInfo.win ?? playerInfo.gameEndedInEarlySurrender;
   let date = new Date(matchData.info.gameCreation);
   let printDate = date.toLocaleDateString("en-US");
-
+  console.log(playerInfo)
 
   const damageNumberArray = (participantList: any) => {
     let maxDamage: number = participantList[0].totalDamageDealtToChampions;
@@ -121,7 +121,7 @@ const PlayerMatchContainer = ({ matchData, puuid, gameIndex }) => {
                   <>
                   {renderItems(gamePlayer)}
                   </>
-                  <div className="pl-2">
+                  <div className="pl-2 w-24">
                   <DamageContainer
                   damage={gamePlayer.totalDamageDealtToChampions}
                   maxDamage={maxDamage}
@@ -150,11 +150,11 @@ const PlayerMatchContainer = ({ matchData, puuid, gameIndex }) => {
                     {gamePlayer.assists}
                   </p>
                   </div>
-                  <div className="flex">
+                  <div className="flex items-center">
                     <>
                   {renderItems(gamePlayer)}
                   </>
-                  <div className="pl-2">
+                  <div className="pl-2 w-24">
                   <DamageContainer
                   damage={gamePlayer.totalDamageDealtToChampions}
                   maxDamage={maxDamage}

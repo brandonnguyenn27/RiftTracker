@@ -1,3 +1,4 @@
+"use client";
 import {Progress} from "@nextui-org/react";
 
 const DamageContainer = ({damage, maxDamage}: {damage: number, maxDamage: number}) => {
@@ -9,9 +10,9 @@ const DamageContainer = ({damage, maxDamage}: {damage: number, maxDamage: number
             value={value}
             size="sm"
             classNames={{
-                label: "p-0 m-0 text-white text-xs",
+                label: "text-white text-xs",
             }}
-            className="w-28"
+            className=""
             />
     );
 }
