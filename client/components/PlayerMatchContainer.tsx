@@ -7,7 +7,7 @@ import DamageContainer from "./DamageContainer";
 
 const gameTypeConverter = (queueID) => {
   if (queueID == 400) {
-    return "Normal";
+    return "Normal Draft";
   }
   if (queueID == 440) {
     return "Ranked Flex";
@@ -15,10 +15,13 @@ const gameTypeConverter = (queueID) => {
   if (queueID == 450) {
     return "ARAM";
   }
+  if (queueID == 430) {
+    return "Normal Blind"
+  }
   if (queueID == 420) {
     return "Ranked Solo/Duo";
   } else {
-    return "0";
+    return "Error";
   }
 };
 const renderItems = (gamePlayer) => {
@@ -72,7 +75,7 @@ const PlayerMatchContainer = ({ matchData, puuid, gameIndex }) => {
     <>
       <div className={`${playerInfo.win === true ? 'bg-blue-500' : 'bg-red-500'} border-gray-400 border bg-opacity-90 rounded-b-none rounded-md`}>
         <p className={`bg-opacity-30 rounded-md rounded-b-none p-3 font-semibold text-white`}>
-          Game {gameIndex}
+          {gameTypeConverter(matchData.info.queueId)}
         </p>
       </div>
       <Accordion className="border border-gray-400 rounded-md rounded-t-none bg-gray-700">
@@ -80,16 +83,16 @@ const PlayerMatchContainer = ({ matchData, puuid, gameIndex }) => {
           key="1"
           aria-label="Player Info Container"
           title={
-            <div className="flex">
-              <div className="pr-2">
+            <div className="flex items-center">
+              <div className="mr-2 ml-1 border-2 rounded-3xl border-yellow-200 border-opacity-70">
               <ChampionIconContainer 
               championName={playerInfo.championName}
               />
               </div>
             <p className="text-white">
-              {printDate} {"| "} {gameTypeConverter(matchData.info.queueId)}{" "}
-              {"| "} {secondsToMin(matchData.info.gameDuration)} {"| "}{" "}
-              {winBoolean ? "Victory" : "Defeat"} {" | "}
+              {printDate}
+              {" | "} {secondsToMin(matchData.info.gameDuration)} {"| "}{" "}
+              
               {playerInfo.kills}/{playerInfo.deaths}/{playerInfo.assists}
             </p>
             </div>
@@ -102,10 +105,14 @@ const PlayerMatchContainer = ({ matchData, puuid, gameIndex }) => {
               {participantList.slice(0, 5).map((gamePlayer, index1) => (
                 <div className="border-b-1 rounded-sm p-1">
                   <div className="flex items-center m-1">
+                    <> 
+                    <div className="border border-yellow-100 rounded-3xl">
                   <ChampionIconContainer
                     championName={gamePlayer.championName}/>
+                    </div>
+                    </>
                   <p key={index1} className="p-2 text-white">
-                    {gamePlayer.riotIdGameName} {"| "} {gamePlayer.championName}{" "}
+                    {gamePlayer.riotIdGameName}#{gamePlayer.riotIdTagline} {"| "} {gamePlayer.championName}{" "}
                     {"| "} {gamePlayer.kills}/{gamePlayer.deaths}/
                     {gamePlayer.assists}
                   </p>
@@ -131,11 +138,15 @@ const PlayerMatchContainer = ({ matchData, puuid, gameIndex }) => {
               {participantList.slice(-5).map((gamePlayer, index2) => (
                 <div className="border-b-1 rounded-sm p-1">
                   <div className="flex items-center m-1">
+                    <>
+                    <div className="border border-yellow-100 rounded-3xl">
                   <ChampionIconContainer
                     championName={gamePlayer.championName}/>
+                    </div>
+                    </>
                   <p key={index2} className="p-2 text-white">
-                    {gamePlayer.riotIdGameName} {"| "} {gamePlayer.championName}{" "}
-                    {"| "} {gamePlayer.kills}/{gamePlayer.deaths}/
+                    {gamePlayer.riotIdGameName}#{gamePlayer.riotIdTagline} {" | "} {gamePlayer.championName}{" "}
+                    {" | "} {gamePlayer.kills}/{gamePlayer.deaths}/
                     {gamePlayer.assists}
                   </p>
                   </div>

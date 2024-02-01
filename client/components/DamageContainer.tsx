@@ -11,7 +11,7 @@ const DamageContainer = ({damage, maxDamage}: {damage: number, maxDamage: number
             classNames={{
                 label: "p-0 m-0 text-white text-xs",
             }}
-            className="w-32"
+            className="w-28"
             />
     );
 }

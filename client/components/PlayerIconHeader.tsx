@@ -4,7 +4,7 @@ const PlayerIconHeader = ({ player, puuid }) => {
   const playerIndex = player.metadata.participants.indexOf(puuid);
   const playerInfo = player.info.participants[playerIndex];
   console.log(playerInfo);
-  const icon = playerInfo.profileIcon;
+  let icon = playerInfo.profileIcon;
   console.log(icon);
   return (
     <div className="flex items-center bg-gray-700">
