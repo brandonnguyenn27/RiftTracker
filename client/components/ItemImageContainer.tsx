@@ -1,7 +1,7 @@
 // make image frame to place item pictures into.
 import Image from "next/image";
 
-const ItemImageContainer = (imageID: any) => {
+const ItemImageContainer = (imageID: RiotGamesAPI.Match.Participant["stats"]["item0"]) => {
   const imageIDNumber = imageID.imageID;
   return (
     <div className="m-0.5 h-8 w-8">

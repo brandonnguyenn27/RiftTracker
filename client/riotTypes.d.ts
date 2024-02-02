@@ -1,6 +1,11 @@
 declare namespace RiotGamesAPI {
     namespace Match {
-        interface MatchDetail {
+        interface metadata {
+            dataVersion: string;
+            matchId: string;
+            participants: Participant[];
+        }
+        interface info {
             mapId: number;
             matchCreation: number;
             matchId: number;
@@ -17,7 +22,7 @@ declare namespace RiotGamesAPI {
             timeline: Timeline;
         }
         interface Participant {
-            championId: string;
+            championId: championId;
             highestAchievedSeasonTier: string;
             masteries: Mastery[];
             participantId: number;
@@ -27,6 +32,12 @@ declare namespace RiotGamesAPI {
             stats: ParticipantStats;
             teamId: number;
             timeline: ParticipantTimeline;
+        }
+        interface Item {
+            imageID: number;
+        }
+        interface championId {
+            championName: string;
         }
         interface ParticipantIdentity {
             participantId: number;
@@ -71,13 +82,13 @@ declare namespace RiotGamesAPI {
             goldEarned: number;
             goldSpent: number;
             inhibitorKills: number;
-            item0: number;
-            item1: number;
-            item2: number;
-            item3: number;
-            item4: number;
-            item5: number;
-            item6: number;
+            item0: Item;
+            item1: Item;
+            item2: Item;
+            item3: Item;
+            item4: Item;
+            item5: Item;
+            item6: Item;
             killingSprees: number;
             kills: number;
             largestCriticalStrike: number;

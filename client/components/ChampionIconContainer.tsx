@@ -1,5 +1,5 @@
 import Image from "next/image";
-const ChampionIconContainer = (championName: any) => {
+const ChampionIconContainer = (championName: RiotGamesAPI.Match.Participant["championId"]) => {
   const champName = championName.championName;
   return (
     <>
